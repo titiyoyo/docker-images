@@ -3,7 +3,12 @@ FROM php:fpm-alpine
 COPY .profile /root/.profile
 
 RUN curl -sS https://getcomposer.org/installer | php -- --install-dir=/usr/local/bin --filename=composer
-RUN docker-php-ext-install mysqli pdo pdo_mysql
+RUN apk add --no-cache \
+      unzip \
+      libzip-dev \
+      zip
+
+RUN docker-php-ext-install mysqli pdo pdo_mysql zip
 RUN apk add unzip
 RUN apk add --no-cache --update --virtual \
     buildDeps \

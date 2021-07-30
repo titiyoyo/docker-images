@@ -6,6 +6,12 @@ update-common:
 build-all:
 	scripts/build-all.sh
 
+push-all:
+	scripts/push-all.sh
+
+build-push-all:
+	scripts/build-push-all.sh
+
 build:
 	scripts/build.sh $$IMG_PATH
 

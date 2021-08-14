@@ -1,14 +1,12 @@
-FROM debian:latest
+FROM docker/compose:latest
 
-COPY .profile /root/.bashrc
+COPY .profile /root/.profile
 
-RUN apt-get update && apt-get install -y \
+RUN apk add --update \
     rsync \
     wget \
     openssh-client \
-    apt-transport-https \
     ca-certificates \
     curl \
     gnupg \
-    lsb-release \
-    systemd
+    make

@@ -9,4 +9,5 @@ RUN apk add --update \
     ca-certificates \
     curl \
     gnupg \
-    make
+    make \
+    bash

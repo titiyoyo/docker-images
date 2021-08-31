@@ -2,7 +2,7 @@ FROM docker/compose:latest
 
 COPY .profile /root/.profile
 
-RUN apk add --update \
+RUN apk add --update --no-cache \
     rsync \
     wget \
     openssh-client \
@@ -10,4 +10,6 @@ RUN apk add --update \
     curl \
     gnupg \
     make \
-    bash
+    bash \
+    zip  \
+    unzip

@@ -1,11 +1,13 @@
 FROM php:fpm-alpine
 
 COPY .profile /root/.profile
+COPY .profile /root/.bashrc
 
 RUN curl -sS https://getcomposer.org/installer | php -- --install-dir=/usr/local/bin --filename=composer
 RUN apk add --no-cache \
       unzip \
       libzip-dev \
+      msmtp \
       zip
 
 RUN docker-php-ext-install mysqli pdo pdo_mysql zip
@@ -22,20 +24,8 @@ RUN apk add --no-cache --update --virtual \
     git
 
 RUN docker-php-source extract && \
-    pecl install xdebug && \
-    docker-php-ext-enable xdebug
-
-RUN set -xe \
- && apk add --no-cache --virtual .build-deps $PHPIZE_DEPS \
- && apk add --no-cache bash imagemagick-dev \
- && git clone https://github.com/Imagick/imagick \
- && cd imagick \
- && git checkout master && git pull \
- && phpize && ./configure && make && make install \
- && cd .. && rm -Rf imagick \
- && docker-php-ext-enable imagick \
- && apk del .build-deps \
- && rm -rf /tmp/* /var/cache/apk/*
+    pecl install xdebug imagick && \
+    docker-php-ext-enable xdebug imagick
 
 RUN docker-php-source delete
 

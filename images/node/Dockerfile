@@ -1,7 +1,5 @@
 FROM node:lts-alpine
 
-COPY .profile /root/.profile
-
 RUN apk add --update  \
     make \
     wget \
@@ -13,3 +11,5 @@ RUN apk add --update  \
     bash \
     zip  \
     unzip
+
+COPY .profile /root/.profile

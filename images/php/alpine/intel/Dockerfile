@@ -1,8 +1,5 @@
 FROM php:fpm-alpine
 
-COPY .profile /root/.profile
-COPY .profile /root/.bashrc
-
 RUN curl -sS https://getcomposer.org/installer | php -- --install-dir=/usr/local/bin --filename=composer
 RUN apk add --no-cache \
       unzip \
@@ -33,5 +30,8 @@ ADD upload_size.ini /usr/local/etc/php/conf.d
 ADD php.ini-development /usr/local/etc/php/php.ini
 ADD docker-php-ext-xdebug.ini /usr/local/etc/php/conf.d/docker-php-ext-xdebug.ini
 ADD zz-docker.conf /usr/local/etc/php-fpm.d/zz-docker.conf
+
+COPY .profile /root/.profile
+COPY .profile /root/.bashrc
 
 WORKDIR /var/www

@@ -1,11 +1,7 @@
 #!/bin/bash
 
-for i in images/* ; do
-  for j in $i/*; do
-  if [ -d $j ]; then
-    cp common/.profile $j;
-  else
-      cp common/.profile $i;
-  fi;
-  done;
+DIRS=$(find . -name .buildinfo | xargs dirname )
+
+for dir in $DIRS; do
+  cp common/.profile $dir;
 done;

@@ -1,7 +1,5 @@
 FROM php:cli-alpine
 
-COPY .profile /root/.profile
-
 RUN curl -sS https://getcomposer.org/installer | php -- --install-dir=/usr/local/bin --filename=composer
 RUN apk add --no-cache \
     rsync \
@@ -17,5 +15,7 @@ RUN apk add --no-cache \
     libzip-dev \
     make \
     git
+
+COPY .profile /root/.profile
 
 WORKDIR /var/www

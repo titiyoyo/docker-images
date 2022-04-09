@@ -1,7 +1,7 @@
-FROM mysql:5.7
-
-COPY .profile /root/.profile
+FROM mysql:8-oracle
 
 RUN rm -rf /var/lib/mysql/*
 
 COPY mysql.cnf /etc/mysql/conf.d
+
+COPY .profile /root/.profile

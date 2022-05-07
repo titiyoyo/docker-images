@@ -1,4 +1,4 @@
-FROM php:fpm-bullseye
+FROM --platform=linux/arm64/v8 php:fpm-bullseye
 
 RUN curl -sS https://getcomposer.org/installer | php -- --install-dir=/usr/local/bin --filename=composer
 RUN apt-get update

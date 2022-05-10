@@ -1,21 +1,21 @@
-FROM --platform=linux/arm64/v8 php:fpm-bullseye
+FROM --platform=linux/arm64/v8 php:fpm-alpine
 
 RUN curl -sS https://getcomposer.org/installer | php -- --install-dir=/usr/local/bin --filename=composer
-RUN apt-get update
-RUN apt-get install -y \
+RUN apk add --no-cache \
       unzip \
       libzip-dev \
       msmtp \
       zip
 
 RUN docker-php-ext-install mysqli pdo pdo_mysql zip
-RUN apt-get install -y unzip
-RUN apt-get install -y \
-    gcc \
-    build-essential \
+RUN apk add unzip
+RUN apk add --no-cache --update --virtual \
+    buildDeps \
     autoconf \
+    pkgconfig \
+    build-base \
+    imagemagick-dev \
     imagemagick \
-    libmagickwand-dev \
     libtool \
     make \
     git
@@ -35,3 +35,4 @@ COPY .profile /root/.profile
 COPY .profile /root/.bashrc
 
 WORKDIR /var/www
+

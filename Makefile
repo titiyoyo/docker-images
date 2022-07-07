@@ -1,7 +1,7 @@
 T := latest
 
 update-common:
-	scripts/update-all.sh
+	scripts/update-all.sh ${ARCH}
 
 build-all-arm: update-common
 	scripts/build-all.sh arm
@@ -10,7 +10,7 @@ build-all-intel: update-common
 	scripts/build-all.sh intel
 
 push-all:
-	scripts/push-all.sh
+	scripts/push-all.sh ${ARCH}
 
 build-push-all-arm: update-common
 	scripts/build-push-all.sh arm

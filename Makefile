@@ -19,12 +19,15 @@ build-push-all-intel: update-common
 	scripts/build-push-all.sh intel
 
 buildx:
-	scripts/buildx.sh ${IMG_PATH} ${ARCH}
+	scripts/buildx.sh ${IMG} ${ARCH}
 
 build:
-	scripts/build.sh ${IMG_PATH}
+	scripts/build.sh ${IMG}
 
 push:
-	scripts/push.sh ${IMG_PATH}
+	scripts/push.sh ${IMG}
 
 build-push: update-common build push
+
+pull-all-images:
+	scripts/refresh-all.sh ${ARCH}

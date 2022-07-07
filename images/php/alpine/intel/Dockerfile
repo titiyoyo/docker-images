@@ -18,12 +18,14 @@ RUN apk add --no-cache --update --virtual \
     imagemagick \
     libtool \
     make \
-    git
+    git \
+    icu \
+    icu-dev
 
-RUN docker-php-source extract && \
-    pecl install xdebug imagick && \
-    docker-php-ext-enable xdebug imagick
-
+RUN docker-php-source extract
+RUN pecl install xdebug imagick
+RUN docker-php-ext-configure intl && docker-php-ext-install intl
+RUN docker-php-ext-enable xdebug imagick intl
 RUN docker-php-source delete
 
 ADD upload_size.ini /usr/local/etc/php/conf.d

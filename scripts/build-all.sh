@@ -6,6 +6,6 @@ DIRS=$(find . -name .buildinfo | xargs dirname )
 for dir in $DIRS; do
   if [[ "$dir" == *"$ARCH"* ]]; then
     IMG_PATH=$(echo $dir | sed 's/^\.\///')
-    make build IMG_PATH="$IMG_PATH"
+    make build IMG="$IMG_PATH"
   fi;
 done;

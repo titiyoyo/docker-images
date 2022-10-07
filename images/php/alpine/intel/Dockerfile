@@ -1,4 +1,4 @@
-FROM php:fpm-alpine
+FROM php:8.1.10-fpm-alpine
 
 RUN curl -sS https://getcomposer.org/installer | php -- --install-dir=/usr/local/bin --filename=composer
 RUN apk add --no-cache \

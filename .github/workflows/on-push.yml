@@ -7,6 +7,8 @@ jobs:
     steps:
       - name: Checkout
         uses: actions/checkout@v3
+        with:
+          fetch-depth: 0
 
       - name: Set up QEMU
         uses: docker/setup-qemu-action@v1
@@ -23,23 +25,22 @@ jobs:
           username: ${{ secrets.DOCKER_USERNAME }}
           password: ${{ secrets.DOCKER_PWD }}
 
-      - name: Get All Changed Files
-        id: changed_files
-        uses: jitterbit/get-changed-files@v1
-
       - name: Available platforms
         run: echo ${{ steps.buildx.outputs.platforms }}
 
       - name: building modified images
         run: |
-          for changed_file in ${{ steps.changed_files.outputs.all }}; do          
+          NB_COMMITS=$(git cherry -v origin/master | wc -l)
+          CHANGED_FILES=$(git --no-pager diff --name-only "HEAD~$NB_COMMITS")
+          
+          for changed_file in $CHANGED_FILES; do          
             if [[ $changed_file == *"images"* ]]; then
-              echo "processing $IMG_PATH"
+              echo "processing $changed_file"
               ARCH=linux/amd64
               if [[ $changed_file == *"arm"* ]]; then
                 ARCH=linux/arm64
               fi
-              IMG_PATH=$(dirname "$changed_file")
-              make buildx "IMG_PATH=$IMG_PATH" "ARCH=$ARCH"
+              IMG=$(dirname "$changed_file")
+              make buildx "IMG=$IMG" "ARCH=$ARCH"
             fi
           done

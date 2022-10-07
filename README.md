@@ -46,3 +46,4 @@ T=mysql-5.7 # image tag
 I=database # image name
 ```
 You can put whatever you like in that file as long as a shell script can source a `T` and an `I` variable
+

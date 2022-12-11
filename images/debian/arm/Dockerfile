@@ -1,6 +1,7 @@
 FROM --platform=linux/arm64/v8 debian:latest
 
-RUN apt-get update && apt-get install -y \
+RUN sudo apt-get update  \
+    && sudo apt-get install -y \
     rsync \
     wget \
     openssh-client \
@@ -8,6 +9,10 @@ RUN apt-get update && apt-get install -y \
     ca-certificates \
     curl \
     gnupg \
-    lsb-release
+    lsb-release \
+    software-properties-common \
+    bash
+
+RUN chsh -s /bin/bash
 
 COPY .profile /root/.bashrc

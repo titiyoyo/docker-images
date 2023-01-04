@@ -1,7 +1,13 @@
-FROM --platform=linux/arm64/v8 php:8.1.10-fpm-alpine
+ARG PHP_IMAGE_VERSION=8.2
+ARG PHP_TAG=-fpm-alpine
+ARG PHP_IMAGE=php:$PHP_IMAGE_VERSION$PHP_TAG
+
+FROM --platform=linux/arm64/v8 $PHP_IMAGE
 
 RUN curl -sS https://getcomposer.org/installer | php -- --install-dir=/usr/local/bin --filename=composer
 RUN apk add --no-cache \
+      linux-headers \
+      bash \
       unzip \
       libzip-dev \
       msmtp \

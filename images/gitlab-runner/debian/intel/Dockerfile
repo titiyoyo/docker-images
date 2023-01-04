@@ -35,3 +35,6 @@ RUN apt install -y software-properties-common curl \
     && apt update \
     && apt install -y php8.1 php8.1-zip php8.1-dom php8.1-mbstring php8.1-intl php8.1-imagick php8.1-xdebug \
     && curl -sS https://getcomposer.org/installer | php -- --install-dir=/usr/local/bin --filename=composer
+
+RUN curl -LJO "https://gitlab-runner-downloads.s3.amazonaws.com/latest/deb/gitlab-runner_amd64.deb" \
+    && dpkg -i gitlab-runner_amd64.deb

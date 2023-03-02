@@ -13,6 +13,9 @@ RUN apk add --no-cache \
       msmtp \
       zip
 
+RUN curl -1sLf 'https://dl.cloudsmith.io/public/symfony/stable/setup.alpine.sh' | bash
+RUN apk add --no-cache symfony-cli
+
 RUN docker-php-ext-install mysqli pdo pdo_mysql zip
 RUN apk add unzip
 RUN apk add --no-cache --update --virtual \

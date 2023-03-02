@@ -28,6 +28,9 @@ RUN apk add --no-cache --update --virtual \
     icu \
     icu-dev
 
+RUN curl -1sLf 'https://dl.cloudsmith.io/public/symfony/stable/setup.alpine.sh' | bash
+RUN apk add --no-cache symfony-cli
+
 RUN docker-php-source extract
 RUN pecl install xdebug imagick
 RUN docker-php-ext-configure intl && docker-php-ext-install intl

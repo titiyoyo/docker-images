@@ -1,7 +1,7 @@
 FROM --platform=linux/arm64/v8 debian:latest
 
-RUN sudo apt-get update  \
-    && sudo apt-get install -y \
+RUN apt-get update  \
+    && apt-get install -y \
     rsync \
     wget \
     openssh-client \
@@ -11,7 +11,11 @@ RUN sudo apt-get update  \
     gnupg \
     lsb-release \
     software-properties-common \
-    bash
+    bash \
+    sudo
+
+RUN curl -1sLf 'https://dl.cloudsmith.io/public/symfony/stable/setup.deb.sh' | bash
+RUN apt-get install -y symfony-cli
 
 RUN chsh -s /bin/bash
 

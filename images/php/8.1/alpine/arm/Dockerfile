@@ -1,8 +1,8 @@
-ARG PHP_IMAGE_VERSION=8.2
+ARG PHP_IMAGE_VERSION=8.1
 ARG PHP_TAG=-fpm-alpine
 ARG PHP_IMAGE=php:$PHP_IMAGE_VERSION$PHP_TAG
 
-FROM $PHP_IMAGE
+FROM --platform=linux/arm64/v8 $PHP_IMAGE
 
 RUN curl -sS https://getcomposer.org/installer | php -- --install-dir=/usr/local/bin --filename=composer
 RUN apk add --no-cache \
@@ -28,6 +28,9 @@ RUN apk add --no-cache --update --virtual \
     icu \
     icu-dev
 
+RUN curl -1sLf 'https://dl.cloudsmith.io/public/symfony/stable/setup.alpine.sh' | bash
+RUN apk add --no-cache symfony-cli
+
 RUN docker-php-source extract
 RUN pecl install xdebug imagick
 RUN docker-php-ext-configure intl && docker-php-ext-install intl
@@ -43,3 +46,4 @@ COPY .profile /root/.profile
 COPY .profile /root/.bashrc
 
 WORKDIR /var/www
+

@@ -10,6 +10,10 @@ RUN apt-get update \
     curl \
     gnupg \
     lsb-release \
-    software-properties-common
+    software-properties-common \
+    sudo
+
+RUN curl -1sLf 'https://dl.cloudsmith.io/public/symfony/stable/setup.deb.sh' | bash
+RUN apt-get install -y symfony-cli
 
 COPY .profile /root/.bashrc

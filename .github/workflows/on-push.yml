@@ -30,7 +30,8 @@ jobs:
 
       - name: building modified images
         run: |
-          if [[ $BRANCH == "refresh-all" ]]; then
+          BRANCH_NAME=${GITHUB_REF##*/}
+          if [[ $BRANCH_NAME == "refresh-all" ]]; then
             make build-push-all-arm
             make build-push-all-intel
             exit 0

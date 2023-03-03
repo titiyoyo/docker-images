@@ -47,3 +47,5 @@ I=database # image name
 ```
 You can put whatever you like in that file as long as a shell script can source a `T` and an `I` variable
 
+## Rebuild all images
+just push a commit on a branch named `refresh-all` to rebuild all images

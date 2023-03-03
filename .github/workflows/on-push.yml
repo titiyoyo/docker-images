@@ -30,8 +30,22 @@ jobs:
 
       - name: building modified images
         run: |
+          if [[ $BRANCH == "refresh-all" ]]; then
+            make build-push-all-arm
+            make build-push-all-intel
+            exit 0
+          fi
+          
           NB_COMMITS=$(git cherry -v origin/master | wc -l)
           CHANGED_FILES=$(git --no-pager diff --name-only "HEAD~$NB_COMMITS")
+          
+          DIRNAMES=()
+          
+          for changed_file in $CHANGED_FILES; do
+            DIRNAMES+=("$(dirname $changed_file)")
+          done
+          
+          IMAGES_TO_BUILD=$(printf "%s\n" "${IDS[@]}" | sort -u)
           
           for changed_file in $CHANGED_FILES; do          
             if [[ $changed_file == *"images"* ]]; then

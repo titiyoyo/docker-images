@@ -38,23 +38,20 @@ jobs:
           
           NB_COMMITS=$(git cherry -v origin/master | wc -l)
           CHANGED_FILES=$(git --no-pager diff --name-only "HEAD~$NB_COMMITS")
-          
           DIRNAMES=()
-          
           for changed_file in $CHANGED_FILES; do
             DIRNAMES+=("$(dirname $changed_file)")
           done
           
-          IMAGES_TO_BUILD=$(printf "%s\n" "${IDS[@]}" | sort -u)
+          UNIQUE_DIRNAMES=$(printf "%s\n" "${DIRNAMES[@]}" | sort -u)
           
-          for changed_file in $CHANGED_FILES; do          
-            if [[ $changed_file == *"images"* ]]; then
-              echo "processing $changed_file"
+          for dirname in $UNIQUE_DIRNAMES; do          
+            if [[ $dirname == *"images"* ]]; then
+              echo "processing $dirname"
               ARCH=linux/amd64
-              if [[ $changed_file == *"arm"* ]]; then
+              if [[ $dirname == *"arm"* ]]; then
                 ARCH=linux/arm64
               fi
-              IMG=$(dirname "$changed_file")
-              make buildx "IMG=$IMG" "ARCH=$ARCH"
+              make buildx "IMG=$dirname" "ARCH=$ARCH"
             fi
           done

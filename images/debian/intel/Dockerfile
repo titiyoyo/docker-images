@@ -11,9 +11,14 @@ RUN apt-get update \
     gnupg \
     lsb-release \
     software-properties-common \
+    default-mysql-client \
+    build-essential \
+    bash \
     sudo
 
 RUN curl -1sLf 'https://dl.cloudsmith.io/public/symfony/stable/setup.deb.sh' | bash
 RUN apt-get install -y symfony-cli
+
+RUN chsh -s /bin/bash
 
 COPY .profile /root/.bashrc

@@ -29,9 +29,18 @@ RUN mkdir -p /usr/local/nvm \
     && /bin/bash -c "source $NVM_DIR/nvm.sh && nvm install $NODE_VERSION && nvm use --delete-prefix $NODE_VERSION" \
     && node --version
 
+
 # PHP
-RUN apt install -y software-properties-common curl \
-    && curl -sSL https://packages.sury.org/php/README.txt | bash -x \
+RUN curl -sSL https://packages.sury.org/php/README.txt | bash -x \
     && apt update \
-    && apt install -y php8.1 php8.1-zip php8.1-dom php8.1-mbstring php8.1-intl php8.1-imagick php8.1-xdebug \
-    && curl -sS https://getcomposer.org/installer | php -- --install-dir=/usr/local/bin --filename=composer
+    && apt install -y \
+      php8.2 \
+      php8.2-zip \
+      php8.2-dom \
+      php8.2-mbstring \
+      php8.2-intl \
+      php8.2-imagick \
+      php8.2-xdebug \
+      php8.2-curl \
+      php8.2-mysql \
+    && curl -sS https://getcomposer.org/installer | php -- --install-dir=/usr/local/bin --filename=composer \

@@ -10,6 +10,8 @@ RUN apk add --update  \
     gnupg \
     bash \
     zip  \
-    unzip
+    unzip \
+    awk \
+    jq
 
 COPY .profile /root/.profile

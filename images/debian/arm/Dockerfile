@@ -1,6 +1,6 @@
 FROM --platform=linux/arm64/v8 debian:latest
 
-RUN apt-get update  \
+RUN apt-get update \
     && apt-get install -y \
     rsync \
     wget \
@@ -11,6 +11,8 @@ RUN apt-get update  \
     gnupg \
     lsb-release \
     software-properties-common \
+    default-mysql-client \
+    build-essential \
     bash \
     sudo
 

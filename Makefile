@@ -18,6 +18,9 @@ build-push-all-arm: update-common
 build-push-all-intel: update-common
 	scripts/build-push-all.sh intel
 
+build-modified-images:
+	scripts/build-modified-images.sh
+
 buildx:
 	scripts/buildx.sh ${IMG} ${ARCH}
 

@@ -1,4 +1,4 @@
-FROM titiyoyo/debian:latest
+FROM titiyoyo/debian:intel
 
 ENV DEBIAN_FRONTEND noninteractive
 ENV NVM_DIR /usr/local/nvm
@@ -16,7 +16,11 @@ RUN mkdir -p /etc/apt/keyrings  \
          $(lsb_release -cs) stable" | tee /etc/apt/sources.list.d/docker.list > /dev/null
 
 RUN apt-get update  \
-    && apt-get install -y docker-ce docker-ce-cli containerd.io docker-compose-plugin \
+    && apt-get install -y \
+      docker-ce \
+      docker-ce-cli \
+      containerd.io \
+      docker-compose-plugin \
     && usermod -aG docker $(whoami) \
     && newgrp docker \
     && systemctl enable docker.service \
@@ -30,11 +34,16 @@ RUN mkdir -p /usr/local/nvm \
     && node --version
 
 # PHP
-RUN apt install -y software-properties-common curl \
-    && curl -sSL https://packages.sury.org/php/README.txt | bash -x \
+RUN curl -sSL https://packages.sury.org/php/README.txt | bash -x \
     && apt update \
-    && apt install -y php8.1 php8.1-zip php8.1-dom php8.1-mbstring php8.1-intl php8.1-imagick php8.1-xdebug \
+    && apt install -y \
+      php8.2 \
+      php8.2-zip \
+      php8.2-dom \
+      php8.2-mbstring \
+      php8.2-intl \
+      php8.2-imagick \
+      php8.2-xdebug \
+      php8.2-curl \
+      php8.2-mysql \
     && curl -sS https://getcomposer.org/installer | php -- --install-dir=/usr/local/bin --filename=composer
-
-RUN curl -LJO "https://gitlab-runner-downloads.s3.amazonaws.com/latest/deb/gitlab-runner_amd64.deb" \
-    && dpkg -i gitlab-runner_amd64.deb

@@ -9,6 +9,7 @@ RUN apk add --update  \
     bash \
     zip  \
     unzip \
+    awk \
     jq
 
 COPY .profile /root/.profile

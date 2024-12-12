@@ -12,7 +12,9 @@ RUN apk add --update  \
     zip  \
     unzip \
     jq \
-    python3
+    python3-dev \
+    gcc \
+    libc-dev
 
 RUN ln -sf python3 /usr/bin/python
 COPY .profile /root/.profile

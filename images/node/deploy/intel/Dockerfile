@@ -14,6 +14,7 @@ RUN apk add --update  \
     jq \
     python3-dev \
     gcc \
+    g++ \
     libc-dev
 
 RUN ln -sf python3 /usr/bin/python

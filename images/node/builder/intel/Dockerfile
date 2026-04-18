@@ -5,11 +5,7 @@ COPY .profile /root/.profile
 RUN apk add --update  \
     bash \
     zip  \
-    unzip \
-    docker \
-    openrc
-
-RUN rc-update add docker boot
+    unzip
 
 RUN ln -sf python3 /usr/bin/python
 

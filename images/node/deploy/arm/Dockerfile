@@ -1,4 +1,4 @@
-FROM node:lts-alpine
+FROM --platform=linux/arm64/v8 node:lts-alpine
 
 RUN apk add --update  \
     make \

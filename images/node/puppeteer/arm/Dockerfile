@@ -13,6 +13,8 @@ RUN apt-get update && apt-get install -y --no-install-recommends \
     libatk-bridge2.0-0 \
     libxcomposite1 \
     libxdamage1 \
+    ca-certificates \
+    update-ca-certificates \
     && rm -rf /var/lib/apt/lists/*
 
 COPY .profile /root/.profile

@@ -10,6 +10,14 @@ RUN apt-get update && apt-get install -y --no-install-recommends \
     git \
     build-essential \
     libffi-dev \
+    libnspr4-dev \
+    libnss3-dev \
+    libssl-dev \
+    libatk1.0-dev \
+    libcups2 \
+    libatk-bridge2.0-0 \
+    libxcomposite1 \
+    libxdamage1 \
     && rm -rf /var/lib/apt/lists/*
 
 RUN python3 -m venv /opt/whisper-env \

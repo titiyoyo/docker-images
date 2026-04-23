@@ -3,6 +3,7 @@ FROM --platform=linux/arm64/v8 node:24-bookworm-slim
 RUN apt-get update && apt-get install -y --no-install-recommends \
     git \
     build-essential \
+    ffmpeg \
     libffi-dev \
     libnspr4-dev \
     libnss3-dev \

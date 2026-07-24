@@ -1,4 +1,4 @@
-FROM docker:cli
+FROM --platform=linux/arm64/v8 docker:cli
 
 COPY .profile /root/.profile
 
@@ -13,7 +13,11 @@ RUN apk add --update --no-cache \
     openssh-client \
     ca-certificates \
     gnupg \
-    python3
+    python3 \
+    typescript \
+    npm
+
+RUN npm install -g tsx
 
 # docker buildx plugin
 RUN mkdir -p /usr/local/lib/docker/cli-plugins \

@@ -1,2 +1,2 @@
-T=intel
+T=arm
 I=docker-builder

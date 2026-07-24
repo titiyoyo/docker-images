@@ -13,7 +13,8 @@ RUN apk add --update --no-cache \
     openssh-client \
     ca-certificates \
     gnupg \
-    python3
+    python3 \
+    typescript
 
 # docker buildx plugin
 RUN mkdir -p /usr/local/lib/docker/cli-plugins \

@@ -1,4 +1,4 @@
-FROM docker:cli
+FROM --platform=linux/arm64/v8 docker:cli
 
 COPY .profile /root/.profile
 

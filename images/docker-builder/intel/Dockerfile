@@ -14,7 +14,10 @@ RUN apk add --update --no-cache \
     ca-certificates \
     gnupg \
     python3 \
-    typescript
+    typescript \
+    npm
+
+RUN npm install -g tsx
 
 # docker buildx plugin
 RUN mkdir -p /usr/local/lib/docker/cli-plugins \

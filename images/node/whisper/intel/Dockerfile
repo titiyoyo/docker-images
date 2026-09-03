@@ -24,5 +24,7 @@ RUN python3 -m venv /opt/whisper-env \
     && /opt/whisper-env/bin/pip install --upgrade pip \
     && /opt/whisper-env/bin/pip install git+https://github.com/openai/whisper.git
 
+RUN pip install openai-whisper
+
 COPY .profile /root/.profile
 

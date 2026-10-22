@@ -1,5 +1,7 @@
 FROM --platform=linux/arm64/v8 node:lts-alpine
 
+LABEL comment="rebuilt for node CVE"
+
 RUN apk add --update  \
     make \
     wget \

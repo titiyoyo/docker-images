@@ -1,5 +1,7 @@
 FROM --platform=linux/arm64/v8 node:24-bookworm-slim
 
+LABEL comment="rebuilt for node CVE"
+
 RUN apt-get update && apt-get install -y --no-install-recommends \
     git \
     build-essential \

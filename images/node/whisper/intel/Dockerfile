@@ -1,4 +1,4 @@
-FROM node:24-bookworm-slim
+FROM node:lts-trixie-slim
 
 ENV PATH="/opt/whisper-env/bin:$PATH"
 

@@ -1,4 +1,6 @@
-FROM node:24-bookworm-slim
+FROM node:lts-trixie-slim
+
+LABEL comment="rebuilt for node CVE"
 
 RUN apt-get update && apt-get install -y --no-install-recommends \
     git \
@@ -14,7 +16,6 @@ RUN apt-get update && apt-get install -y --no-install-recommends \
     libxcomposite1 \
     libxdamage1 \
     ca-certificates \
-    update-ca-certificates \
     && rm -rf /var/lib/apt/lists/*
 
 COPY .profile /root/.profile

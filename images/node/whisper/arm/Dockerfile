@@ -1,4 +1,4 @@
-FROM --platform=linux/arm64/v8 node:24-bookworm-slim
+FROM --platform=linux/arm64/v8 node:lts-trixie-slim
 
 ENV PATH="/opt/whisper-env/bin:$PATH"
 

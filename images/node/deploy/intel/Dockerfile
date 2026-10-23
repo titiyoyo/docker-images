@@ -1,5 +1,7 @@
 FROM node:lts-alpine
 
+LABEL comment="rebuilt for node CVE"
+
 RUN apk add --update  \
     make \
     wget \
